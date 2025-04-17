@@ -1,0 +1,515 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Darlene's Creations – Unique Crochet Art & Custom-Made Gifts</title>
+  <link rel="icon" href="Vt0GMMDJbd6k-Darlenes-creations.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #23112d;
+      color: #faf0fa;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #18161d;
+      color: #f3f1f7;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #eee;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: #e342a6;
+    }
+    .nav-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .desktop-nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: #18161d;
+      color: #f3f1f7;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+    }
+    .mobile-nav.show {
+      display: flex;
+    }
+    nav a {
+      text-decoration: none;
+      color: #f3f1f7;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #e342a6;
+    }
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+      .desktop-nav {
+        display: none;
+      }
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+    h1 {
+      font-size: 2.75rem;
+      color: #e342a6;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+    .section {
+      background-color: #3a2048;
+      color: #faf0fa;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin-top: 3rem;
+    }
+    .section-heading {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: #e342a6;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    blockquote {
+      font-style: italic;
+      margin: 1rem 0;
+      padding-left: 1rem;
+      border-left: 4px solid #e342a6;
+      color: #bbb;
+    }
+    footer {
+      padding: 2rem;
+      background-color: #18161d;
+      color: #f3f1f7;
+    }
+    .footer-columns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .footer-columns div {
+      min-width: 200px;
+      margin-bottom: 1rem;
+    }
+    .footer-columns a {
+      color: #e342a6;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+    footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    /* Gallery styles */
+    .gallery-section {
+      background-color: #2f183a;
+      color: #faf0fa;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+    .gallery-carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .gallery-carousel img {
+      max-width: 350px;
+      max-height: 320px;
+      width: 100vw;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 2px 22px rgba(156,0,120,0.2);
+      background: #faf0fa;
+      object-fit: contain;
+      border: 3px solid #e342a6;
+    }
+    .gallery-btn {
+      background: #e342a6;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .gallery-btn:hover {
+      background: #9400cc;
+    }
+    .gallery-thumbs {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .gallery-thumbs img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 2px solid #e342a6;
+      opacity: 0.6;
+      cursor: pointer;
+      transition: opacity 0.2s, border 0.2s;
+    }
+    .gallery-thumbs img.active {
+      opacity: 1;
+      border: 2px solid #ff6be6;
+    }
+    @media (max-width: 700px) {
+      .gallery-carousel img {
+        max-width: 90vw;
+      }
+      .gallery-section {
+        padding: 1rem;
+      }
+      .section {
+        padding: 1rem;
+      }
+    }
+    /* Scroll to top button */
+    #scrollToTopBtn {
+      position: fixed;
+      display: none;
+      right: 24px;
+      bottom: 28px;
+      width: 38px;
+      height: 38px;
+      background: #e342a6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 18px rgba(227,66,166,0.2);
+      cursor: pointer;
+      z-index: 9999;
+      font-size: 1.3rem;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      outline: none;
+    }
+    #scrollToTopBtn:hover {
+      background: #9400cc;
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("show");
+    }
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="logo" id="logo-container">
+      
+    </div>
+
+   
+</div>
+
+    <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+    <div class="desktop-nav">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit-facebook">Visit Facebook</a>
+    </div>
+    <div class="mobile-nav" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit-facebook">Visit Facebook</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Darlene's Creations – Unique Crochet Art & Custom-Made Gifts</h1>
+      <p>
+        Welcome to <strong>Darlene's Creations</strong>, where <strong>passion meets creativity</strong> in every stitch! Discover a wide selection of <strong>vibrant, hand-crocheted creations</strong> lovingly crafted by Darlene, from adorable plushies to beautiful home decor. Whether you’re searching for the perfect thoughtful gift or a fun addition to your own collection, you’ll find endless inspiration and charm here. Looking for something you don’t see? <strong>Custom orders</strong> are always welcome! 
+        <br><br>
+        I invite you to explore my work and reach out if you’d like to bring your <strong>unique vision</strong> to life through crochet. <strong>Visit my Facebook page</strong> to browse my latest creations, order, or request something special tailored just for you.
+      </p>
+    </header>
+
+    <section class="section" id="services">
+      <h2 class="section-heading">What I Crochet & Offer</h2>
+      <ul>
+        <li><strong>Wide Variety of Crochet Items:</strong> From plush animals to home decor, accessories, and seasonal gifts – I specialize in <strong>original, handmade crochet</strong> of all kinds!</li>
+        <li><strong>Custom Creations Made to Order:</strong> If you dream it, I can likely create it. I happily accept requests for <strong>custom projects, colors, or themes</strong>.</li>
+        <li><strong>Secure Sales Via Facebook:</strong> All items are listed, showcased, and available for purchase <a href="https://www.facebook.com/profile.php?id=61573839479398" target="_blank" style="color:#e342a6;font-weight:bold;">right on my Facebook page</a>. You can browse, message for info, and request your own one-of-a-kind crochet piece with ease.</li>
+      </ul>
+      <p>
+        No matter your style or occasion—birthday, holiday, baby shower, or just because—I have a <strong>unique, soft, and carefully made crochet gift</strong> waiting for you. My creations are perfect for children, teens, and adults, making smiles with every order.
+      </p>
+    </section>
+
+    <section class="section" id="about">
+      <h2 class="section-heading">About Darlene's Creations</h2>
+      <p>
+        At <strong>Darlene's Creations</strong>, every item is a reflection of my dedication to quality and creativity. My journey with crochet began as a labor of love, turning simple yarn into works of art that delight people of all ages. Each stitch is crafted with care, attention to detail, and the desire to bring <strong>joyful moments and lasting memories</strong> to others.
+        <br><br>
+        Over the years, I have explored a vast array of patterns, techniques, and vibrant color palettes. From classic plush bunnies to whimsical fish, charming octopus, flame characters, and even delectable chocolate bun plushies, there is always something new being added to my collection. My work is distinguished by its <strong>vivid color choices and imaginative designs</strong>, reflecting my endless curiosity and commitment to making crocheted art accessible and fun for everyone.
+        <br><br>
+        I’m always open to challenges and <strong>love creating special orders</strong> — so if you have an idea, let’s bring it to life together! My greatest reward is seeing the happiness and surprise on my customers’ faces when they receive their handmade creations. I invite you to explore some of my favorite pieces in the gallery below, then join me on Facebook to connect, order, or simply be inspired.
+      </p>
+    </section>
+
+    <section class="gallery-section" id="gallery">
+      <h2 class="section-heading">Handmade Crochet Gallery</h2>
+      <p>
+        Browse a sample of my <strong>colorful handmade crochet creations</strong>! Each piece is individually designed and meticulously crafted, showcasing the style of <strong>Darlene’s Creations</strong>.<br>
+        Click the thumbnail images to enlarge, and visit my Facebook page for even more!
+      </p>
+      <div class="gallery-carousel" id="carousel">
+        <button class="gallery-btn" id="prevBtn" aria-label="Previous image"><i class="fa fa-chevron-left"></i></button>
+        <img id="mainGalleryImg" src="l7uN3xeQ3RqQ-worms.png" alt="Crochet gallery image">
+        <button class="gallery-btn" id="nextBtn" aria-label="Next image"><i class="fa fa-chevron-right"></i></button>
+      </div>
+      <div class="gallery-thumbs" id="galleryThumbs"></div>
+    </section>
+
+    <section class="section" id="visit-facebook">
+      <h2 class="section-heading">Visit My Facebook Page</h2>
+      <p>
+        Ready to discover more? <strong>See dozens of past and current crochet projects</strong>, read customer comments, and message me directly for your own custom order on my official Facebook page:<br><br>
+        <a href="https://www.facebook.com/profile.php?id=61573839479398" target="_blank" style="color:#e342a6;font-weight:bold;font-size:1.1em;">
+          <i class="fab fa-facebook-square" style="margin-right:8px;"></i>
+          Visit Darlene's Creations on Facebook
+        </a>
+        <br><br>
+        <strong>Your creative ideas are always welcome!</strong> <br>If you want to order something you see, or request a new crochet design, just send me a direct message (DM) on Facebook—I'll respond quickly and work with you to bring your crochet vision to life.
+      </p>
+      <ul>
+        <li><strong>See:</strong> Newest and past crochet items and crafts.</li>
+        <li><strong>Request:</strong> Your favorite characters, colors, animals, or anything you can dream up!</li>
+        <li><strong>Order:</strong> Quickly and safely via social media messaging.</li>
+        <li><strong>Ask questions:</strong> About sizing, colors, turnaround times—I'm here to help!</li>
+      </ul>
+      <p>
+        I take immense pride in creating one-of-a-kind gifts and treasured keepsakes for people near and far. Thank you for supporting small handmade businesses!
+      </p>
+    </section>
+
+    <!-- Dynamic Footer -->
+    <footer>
+      <div id="footer-container"></div>
+    </footer>
+  </div>
+
+  <!-- Scroll to top button -->
+  <button id="scrollToTopBtn" aria-label="Scroll to top" title="Back to Top">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Gallery JavaScript
+    const galleryImages = [
+      {src: "l7uN3xeQ3RqQ-worms.png", alt: "Crochet worms"},
+      {src: "TrHVot9z8RiW-ducks.png", alt: "Crochet ducks"},
+      {src: "rcBYYEkVs3f5-fish.png", alt: "Crochet fish"},
+      {src: "jHo01LPWPysH-egg.png", alt: "Crochet egg"},
+      {src: "lizL5ek1hQnR-bunnies.png", alt: "Crochet bunnies"},
+      {src: "AICQXXd7ZsMP-flame.png", alt: "Crochet flame"},
+      {src: "4RW7vuYYXmCk-pretty-string.png", alt: "Crochet string art"},
+      {src: "1BRuheZFObl9-chocobun.png", alt: "Chocolate bunny crochet"},
+      {src: "54s2B6DdjNdT-octopus.png", alt: "Crochet octopus"},
+      {src: "7O3qAyLJpuN7-buncha-stuff.png", alt: "Crochet assorted creations"},
+    ];
+    let currIdx = 0;
+    const mainImg = document.getElementById('mainGalleryImg');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const thumbsDiv = document.getElementById('galleryThumbs');
+    function updateGallery(idx) {
+      currIdx = idx;
+      mainImg.src = galleryImages[currIdx].src;
+      mainImg.alt = galleryImages[currIdx].alt;
+      document.querySelectorAll('.gallery-thumbs img').forEach((img, i) => {
+        img.classList.toggle('active', i === currIdx);
+      });
+    }
+    prevBtn.onclick = function() {
+      currIdx = (currIdx - 1 + galleryImages.length) % galleryImages.length;
+      updateGallery(currIdx);
+    };
+    nextBtn.onclick = function() {
+      currIdx = (currIdx + 1) % galleryImages.length;
+      updateGallery(currIdx);
+    };
+    // Generate thumbnails
+    galleryImages.forEach((img, i) => {
+      const thumb = document.createElement('img');
+      thumb.src = img.src;
+      thumb.alt = img.alt;
+      thumb.onclick = () => updateGallery(i);
+      if (i === 0) thumb.classList.add('active');
+      thumbsDiv.appendChild(thumb);
+    });
+    // Initialize first image
+    updateGallery(0);
+
+    // Scroll to top button
+    const scrollBtn = document.getElementById("scrollToTopBtn");
+    window.onscroll = function() {
+      if (window.scrollY > 200) {
+        scrollBtn.style.display = "flex";
+      } else {
+        scrollBtn.style.display = "none";
+      }
+    };
+    scrollBtn.onclick = function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+  </script>
+  <script>
+    // Example dynamic data (you’ll replace this with actual values using Make)
+    const data = {
+      logosubmitted: "v0PSvsmLgdmj-1.png",
+      footer_type: "",
+      email: "",
+      phone_display: "",
+      phone_raw: "",
+      facebook: "",
+      instagram: "",
+      twitter: "",
+      linkedin: "",
+      youtube: "",
+      address: "",
+      encoded_address: ""
+    };
+    Object.keys(data).forEach(key => {
+    if (data[key] === null || data[key] === "null" || typeof data[key] !== "string" || data[key].trim().startsWith("~")) {
+      data[key] = "";
+    }
+    });
+    // Inject logo or business name
+    const logoContainer = document.getElementById("logo-container");
+    if (data.logosubmitted && data.logosubmitted !== "") {
+      logoContainer.innerHTML = `<a href="#"><img src="${data.logosubmitted}" alt="Darlene's Creations logo" style="max-height: 40px;"></a>`;
+    } else {
+      logoContainer.innerHTML = `<a href="#">Darlene's Creations</a>`;
+    }
+
+    if (data.address !== "" && data.encoded_address !== ""){
+      data.footer_type = "map";
+    }
+    else if (data.phone_raw !== "" && data.phone_display !== ""){
+      data.footer_type = "two-column";
+    }
+    else{
+      data.footer_type = "simple";
+    }
+    // Render footer based on footer_type
+    const footer = document.getElementById("footer-container");
+    if (data.footer_type === "simple") {
+      footer.innerHTML = `&copy; 2025 Darlene's Creations | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://buddertech.com" target="_blank">Budder Technology</a>`;
+    }
+    else if (data.footer_type === "two-column") {
+      footer.innerHTML = `
+       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+          <div style="flex: 1; min-width: 200px;">
+            &copy; 2025 Darlene's Creations | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://buddertech.com" target="_blank">Budder Technology</a>
+          </div>
+          <div style="flex: 1; min-width: 200px;">
+            ${data.email ? `Email: <a href="mailto:${data.email}" target="_blank">${data.email}</a><br>` : ""}
+            ${data.phone_display ? `Phone: <a href="tel:${data.phone_raw}" target="_blank">${data.phone_display}</a>` : ""}
+            <div style="margin-top: 0.5rem;">
+              ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class="fab fa-facebook"></i></a>` : ""}
+              ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ""}
+              ${data.twitter ? `<a href="${data.twitter}" target="_blank"><i class="fab fa-twitter"></i></a>` : ""}
+              ${data.linkedin ? `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>` : ""}
+              ${data.youtube ? `<a href="${data.youtube}" target="_blank"><i class="fab fa-youtube"></i></a>` : ""}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    else if (data.footer_type === "map") {
+      footer.innerHTML = `
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+          <div style="flex: 1; min-width: 200px;">
+            &copy; 2025 Darlene's Creations | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://buddertech.com" target="_blank">Budder Technology</a>
+          </div>
+          <div style="flex: 1; min-width: 200px;">
+            ${data.email ? `Email: <a href="mailto:${data.email}" target="_blank">${data.email}</a><br>` : ""}
+            ${data.phone_display ? `Phone: <a href="tel:${data.phone_raw}" target="_blank">${data.phone_display}</a>` : ""}
+            <div style="margin-top: 0.5rem;">
+              ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class="fab fa-facebook"></i></a>` : ""}
+              ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ""}
+              ${data.twitter ? `<a href="${data.twitter}" target="_blank"><i class="fab fa-twitter"></i></a>` : ""}
+              ${data.linkedin ? `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>` : ""}
+              ${data.youtube ? `<a href="${data.youtube}" target="_blank"><i class="fab fa-youtube"></i></a>` : ""}
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 200px;">
+            ${data.address ? `<p>${data.address}</p>` : ""}
+            <iframe
+              width="100%" height="200"
+              frameborder="0" style="border:0"
+              src="https://www.google.com/maps?q=${data.encoded_address}&output=embed"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
